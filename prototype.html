@@ -1,0 +1,356 @@
+<!--Прототип.html-->
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Прототип</title>
+        <style>
+            body {
+                padding: 20px;
+                padding-bottom: 1000px;
+            }
+            .task-container {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            .task-card {
+                background: white;
+                border-radius: 10px;
+                padding: 5px;
+                margin-bottom: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                border: 2px solid rgba(0, 0, 0, 0.15);
+            }
+            .task-question {
+                font-size: 18px;
+            }
+            .task-options {
+                display: flex;
+                flex-direction: column;
+            }
+            .task-options label {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                cursor: pointer;
+                padding: 3px;
+                border-radius: 5px;
+                transition: background 0.2s;
+            }
+            .task-options label:hover {
+                background: #f0f0f0;
+            }
+            .task-options input[type="radio"],
+            .task-options input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+                cursor: pointer;
+            }
+            .task-input {
+                padding: 10px;
+                font-size: 16px;
+                border: 2px solid #ddd;
+                border-radius: 5px;
+                width: 100%;
+                max-width: 300px;
+            }
+            .task-input:focus {
+                outline: none;
+                border-color: #4caf50;
+            }
+            .task-type-badge {
+                display: inline-block;
+                background: #2196f3;
+                color: white;
+                padding: 3px 10px;
+                border-radius: 15px;
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+            .task-id {
+                color: #888;
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+            .prototype-title {
+                text-align: center;
+                font-size: 24px;
+                margin: 20px 0;
+                color: #333;
+            }
+            button {
+                padding: 2px 2px;
+                color: black;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            button:hover {
+                background: #45a049;
+            }
+
+            /* ===== ДОБАВЛЕНО: ДЛЯ КАРТИНОК В MATCHING ===== */
+            .matching-container {
+                margin: 10px 0;
+            }
+            .matching-row {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .matching-left {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .matching-right {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                margin-top: 10px;
+            }
+            .matching-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 5px;
+                background: #f9f9f9;
+                border-radius: 5px;
+            }
+            .matching-letter {
+                font-weight: bold;
+                font-size: 16px;
+                color: #2196f3;
+                min-width: 25px;
+            }
+            .matching-image-container {
+                width: 150px;
+                height: 100px;
+                flex-shrink: 0;
+                overflow: hidden;
+                border-radius: 5px;
+                background: #ddd;
+            }
+            .matching-image-container img {
+                width: 150px !important;
+                height: 100px !important;
+                object-fit: cover !important;
+            }
+            .matching-select {
+                padding: 5px 8px;
+                border: 2px solid #ddd;
+                border-radius: 5px;
+                font-size: 14px;
+                background: white;
+                cursor: pointer;
+                flex: 1;
+                max-width: 200px;
+            }
+            .matching-select.correct-answer {
+                border-color: #4caf50;
+                background: #d4edda;
+            }
+            .matching-select.wrong-answer {
+                border-color: #dc3545;
+                background: #f8d7da;
+            }
+            .matching-result-icon {
+                font-size: 18px;
+                min-width: 25px;
+                text-align: center;
+            }
+            .matching-result-icon.correct {
+                color: #4caf50;
+            }
+            .matching-result-icon.incorrect {
+                color: #dc3545;
+            }
+
+            .task-feedback.correct {
+                color: #155724;
+                background: #d4edda;
+                padding: 5px 10px;
+                border-radius: 5px;
+                margin-top: 5px;
+            }
+            .task-feedback.incorrect {
+                color: #721c24;
+                background: #f8d7da;
+                padding: 5px 10px;
+                border-radius: 5px;
+                margin-top: 5px;
+            }
+            .task-feedback.warning {
+                color: #856404;
+                background: #fff3cd;
+                padding: 5px 10px;
+                border-radius: 5px;
+                margin-top: 5px;
+            }
+            .task-card.task-correct {
+                border-color: #4caf50;
+            }
+            .task-card.task-incorrect {
+                border-color: #dc3545;
+            }
+
+            .check-button {
+                background: #4caf50;
+                color: white;
+                border: none;
+                padding: 8px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            .check-button:hover {
+                background: #45a049;
+            }
+            .reset-button {
+                background: #6c757d;
+                color: white;
+                border: none;
+                padding: 8px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            .reset-button:hover {
+                background: #5a6268;
+            }
+            .total-result {
+                background: white;
+                border-radius: 10px;
+                padding: 10px 15px;
+                margin-bottom: 10px;
+                border: 2px solid #4caf50;
+            }
+            .progress-bar {
+                width: 100%;
+                height: 8px;
+                background: #e9ecef;
+                border-radius: 4px;
+                overflow: hidden;
+                margin-top: 5px;
+            }
+            .progress-fill {
+                height: 100%;
+                background: #4caf50;
+                border-radius: 4px;
+                transition: width 0.5s;
+            }
+            /* ===== ОГРАНИЧЕНИЕ РАЗМЕРОВ ИЗОБРАЖЕНИЙ ===== */
+            .task-image {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .task-image img {
+                max-width: 100%;
+                max-height: 300px; /* Ограничиваем высоту */
+                width: auto;
+                height: auto;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                cursor: pointer; /* Указываем, что кликабельно */
+                transition: 0.2s;
+            }
+
+            .task-image img:hover {
+                opacity: 0.9;
+                transform: scale(1.02);
+            }
+
+            /* ===== МОДАЛЬНОЕ ОКНО ДЛЯ УВЕЛИЧЕНИЯ ===== */
+            .image-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.85);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                cursor: pointer;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+            .image-modal.show {
+                opacity: 1;
+            }
+            .image-modal img {
+                max-width: 90%;
+                max-height: 90%;
+                object-fit: contain;
+                border-radius: 8px;
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap">
+                <a href="main.html">
+                    <img src="images/chatgpt-image-23-2026-12-11-15.png" width="80" height="80" alt="Логотип" />
+                </a>
+                <div>
+                    <h2>СДАМ ГИА: РЕШУ ЕГЭ ПО CS2</h2>
+                    <p style="margin-top: 5px; text-align: center" id="pageTitle">Задания: Прототип</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="prototype-title" id="prototypeTitle">Загрузка...</div>
+
+        <div class="task-container" id="tasksContainer">
+            <div style="text-align: center; padding: 40px">
+                <p>Загрузка заданий...</p>
+            </div>
+        </div>
+
+        <footer
+            style="
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: #222;
+                color: white;
+                text-align: center;
+                z-index: 1000;
+            ">
+            <p>© 2026 Решу ЕГЭ по CS2</p>
+            <p>Все права защищены.</p>
+        </footer>
+
+        <script src="js/tasks.js"></script>
+        <script src="js/engine.js"></script>
+
+        <script>
+            function getUrlParameter(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+
+            const prototypeNumber = getUrlParameter("prototype");
+
+            if (prototypeNumber && !isNaN(prototypeNumber)) {
+                const protoNum = parseInt(prototypeNumber);
+                document.getElementById("pageTitle").textContent = `Задания: Прототип №${protoNum}`;
+                document.getElementById("prototypeTitle").textContent = `Прототип №${protoNum}`;
+                renderTasksByPrototype(protoNum);
+            } else {
+                document.getElementById("prototypeTitle").textContent = "Прототип не выбран";
+                document.getElementById("tasksContainer").innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <p>Пожалуйста, выберите прототип на <a href="Задания.html">странице выбора</a></p>
+                    </div>
+                `;
+            }
+        </script>
+    </body>
+</html>

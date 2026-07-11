@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Результат теста</title>
+    <style>
+        body {
+            padding: 20px;
+            padding-bottom: 1000px;
+        }
+        .task-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .task-card {
+            background: white;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border: 2px solid rgba(0, 0, 0, 0.15);
+        }
+        .task-id {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .prototype-title {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+            color: #333;
+        }
+        button {
+            padding: 2px 2px;
+            color: black;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+
+        .check-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .check-button:hover {
+            background: #45a049;
+        }
+        .reset-button {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .reset-button:hover {
+            background: #5a6268;
+        }
+
+        .score-block {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .score-item {
+            background: #f9f9f9;
+            padding: 15px 25px;
+            border-radius: 5px;
+            text-align: center;
+            border: 2px solid rgba(0, 0, 0, 0.15);
+            min-width: 120px;
+        }
+        .score-item .number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+        .score-item .label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .score-item.primary .number { color: #2196F3; }
+        .score-item.secondary .number { color: #4CAF50; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th {
+            background: #2196F3;
+            color: white;
+            padding: 10px 8px;
+            font-size: 14px;
+        }
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .correct { color: #4CAF50; font-weight: bold; }
+        .incorrect { color: #dc3545; font-weight: bold; }
+        .not-answered { color: #888; font-style: italic; }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-link a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .result-title {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap">
+            <a href="main.html">
+                <img src="images/chatgpt-image-23-2026-12-11-15.png" width="80" height="80" alt="Логотип" />
+            </a>
+            <div>
+                <h2>СДАМ ГИА: РЕШУ ЕГЭ ПО CS2</h2>
+                <p style="margin-top: 5px; text-align: center">Результат тестирования</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="result-title">Результат тестирования</div>
+
+    <div class="task-container" id="scoreDisplay">
+        <!-- Заполняется скриптом -->
+    </div>
+
+    <div class="task-container" id="tableContainer">
+        <!-- Таблица с деталями -->
+    </div>
+
+    
+
+    <footer style="position: fixed; bottom: 0; left: 0; right: 0; background: #222; color: white; text-align: center; z-index: 1000;">
+        <p>© 2026 Решу ЕГЭ по CS2</p>
+        <p>Все права защищены.</p>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            const reportJSON = localStorage.getItem('examReport');
+            if (!reportJSON) {
+                document.getElementById('scoreDisplay').innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <p>Нет данных для отображения. Пройдите тест сначала.</p>
+                    </div>
+                `;
+                document.getElementById('tableContainer').innerHTML = '';
+                return;
+            }
+
+            const report = JSON.parse(reportJSON);
+            const { results, total, correct, secondary, timestamp } = report;
+
+            // Баллы
+            document.getElementById('scoreDisplay').innerHTML = `
+                <div class="score-block">
+                    <div class="score-item primary">
+                        <div class="number">${correct}</div>
+                        <div class="label">Первичный балл (из ${total})</div>
+                    </div>
+                    <div class="score-item secondary">
+                        <div class="number">${secondary}</div>
+                        <div class="label">Вторичный балл (0–100)</div>
+                    </div>
+                    <div class="score-item" style="background:#e9ecef;">
+                        <div class="number" style="color:#6c757d;">${Math.round((correct/total)*100)}%</div>
+                        <div class="label">Процент выполнения</div>
+                    </div>
+                </div>
+                <p style="text-align:center; color:#888; font-size:14px;">Дата: ${timestamp}</p>
+            `;
+
+            // Таблица
+            let tableHTML = `
+                <h3 style="margin-top:30px;">Детали по каждому заданию</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>№ задания</th>
+                            <th>Ваш ответ</th>
+                            <th>Правильный ответ</th>
+                            <th>Результат</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            results.forEach(item => {
+                let userDisplay = item.userAnswer;
+                let correctDisplay = item.correctAnswer;
+                let statusText = '';
+                let statusClass = '';
+
+                if (!item.answered) {
+                    userDisplay = '—';
+                    statusText = 'Не отвечено';
+                    statusClass = 'not-answered';
+                } else {
+                    if (item.isCorrect) {
+                        statusText = 'Верно';
+                        statusClass = 'correct';
+                    } else {
+                        statusText = 'Неверно';
+                        statusClass = 'incorrect';
+                    }
+                }
+
+                if (typeof userDisplay === 'object') userDisplay = JSON.stringify(userDisplay);
+                if (typeof correctDisplay === 'object') correctDisplay = JSON.stringify(correctDisplay);
+
+                tableHTML += `
+                    <tr>
+                        <td>${item.id}</td>
+                        <td>${userDisplay || '—'}</td>
+                        <td>${correctDisplay || '—'}</td>
+                        <td class="${statusClass}">${statusText}</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += `
+                    </tbody>
+                </table>
+            `;
+            document.getElementById('tableContainer').innerHTML = tableHTML;
+        };
+    </script>
+</body>
+</html>
