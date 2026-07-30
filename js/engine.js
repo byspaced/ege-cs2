@@ -1,9 +1,8 @@
-// js/engine.js
+
 
 let currentPrototype = null;
 let currentVariantTasks = null;
 
-// ============ ВНЕДРЯЕМ СТИЛИ ДЛЯ ИЗОБРАЖЕНИЙ И МОДАЛКИ ============
 (function injectStyles() {
     const style = document.createElement('style');
     style.textContent = `
@@ -78,7 +77,6 @@ let currentVariantTasks = null;
     document.head.appendChild(style);
 })();
 
-// ============ ОТКРЫТИЕ МОДАЛЬНОГО ОКНА ============
 function openImageModal(src) {
     // Удаляем предыдущее окно, если есть
     const old = document.querySelector('.image-modal');
@@ -100,7 +98,7 @@ function openImageModal(src) {
     modal.focus();
 }
 
-// ============ УНИВЕРСАЛЬНАЯ ФУНКЦИЯ РЕНДЕРИНГА ============
+
 
 function renderTasks(tasks, options = {}) {
     const container = document.getElementById("tasksContainer");
@@ -119,7 +117,7 @@ function renderTasks(tasks, options = {}) {
         html += `<div class="task-id">Задание №${task.id}</div>`;
         html += `<span class="task-type-badge">${getTaskTypeLabel(task.type)}</span>`;
 
-        // Изображение для обычных заданий (не matching)
+       
         if (task.image && task.type !== "matching") {
             html += `<div class="task-image">
                         <img src="${task.image}" alt="Изображение" loading="lazy" 
@@ -164,7 +162,7 @@ function renderTasks(tasks, options = {}) {
     container.innerHTML = html;
 }
 
-// ============ РЕНДЕРИНГ ПО ПРОТОТИПУ ============
+
 
 function renderTasksByPrototype(prototypeNumber) {
     currentPrototype = prototypeNumber;
@@ -180,7 +178,7 @@ function renderTasksByPrototype(prototypeNumber) {
     renderTasks(filteredTasks, { showIndividualCheck: true, showHeaderButtons: true });
 }
 
-// ============ ПРОВЕРКА ВСЕХ С ПЕРЕХОДОМ НА СТРАНИЦУ РЕЗУЛЬТАТА ============
+
 
 function checkAllAnswers() {
     let tasksToCheck = [];
@@ -245,7 +243,7 @@ function checkAllAnswers() {
     window.location.href = 'result.html';
 }
 
-// ============ ДЕТАЛЬНАЯ ПРОВЕРКА ОДНОГО ЗАДАНИЯ ============
+
 
 function checkSingleTaskDetailed(task, silent = false) {
     let isCorrect = false;
@@ -369,7 +367,7 @@ function checkSingleTaskDetailed(task, silent = false) {
     return { isCorrect, userAnswer, correctAnswer, answered };
 }
 
-// ============ ПРОВЕРКА ОТДЕЛЬНОГО ЗАДАНИЯ (кнопка) ============
+
 
 function checkSingleTaskById(taskId) {
     const allTasks = [
@@ -386,7 +384,7 @@ function checkSingleTaskById(taskId) {
     checkSingleTaskDetailed(task, false);
 }
 
-// ============ ГЕНЕРАЦИЯ СЛУЧАЙНОГО ВАРИАНТА ============
+
 
 function generateVariant() {
     const allTasks = [
@@ -417,7 +415,7 @@ function generateVariant() {
     renderTasks(variantTasks, { showIndividualCheck: false, showHeaderButtons: true });
 }
 
-// ============ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ============
+
 
 function getTaskTypeLabel(type) {
     const labels = {
