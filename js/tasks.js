@@ -1,6 +1,5 @@
-// js/tasks.js
 const tasksDB = {
-    // ЗАДАНИЯ С ВЫБОРОМ ОТВЕТА (один правильный)
+    
     choiceTasks: [
         {
             id: 1000,
@@ -9,8 +8,7 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["M4A4", "AK-47", "M4A1-S", "AUG"],
             correct: 3,
-            // Добавляем поле image
-            image: "images/sprays/aug.jpg" // Путь к изображению
+            image: "images/sprays/aug.jpg" 
         },
         {
             id: 1001,
@@ -19,7 +17,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["AK-47", "M4A4", "SG553", "AUG"],
             correct: 0,
-            // Можно использовать URL из интернета
             image: "images/sprays/ak47.jpg"
         },
         {
@@ -38,7 +35,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["TEC-9", "GALIL", "SG553", "FAMAS"],
             correct: 1,
-            // Можно использовать URL из интернета
             image: "images/sprays/galil.jpg"
         },
         {
@@ -48,7 +44,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["FAMAS", "MP7", "P90", "SG553"],
             correct: 0,
-            // Можно использовать URL из интернета
             image: "images/sprays/famas.jpg"
         },
         {
@@ -58,7 +53,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["M4A1-S", "M4A1", "M4A4", "AK-47"],
             correct: 1,
-            // Можно использовать URL из интернета
             image: "images/sprays/m4a1.jpg"
         },
         {
@@ -68,7 +62,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["M4A1-S", "M4A1", "M4A4", "AK-47"],
             correct: 0,
-            // Можно использовать URL из интернета
             image: "images/sprays/m4a1-s.jpg"
         },
         {
@@ -78,7 +71,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["M4A1-S", "M4A1", "M4A4", "AK-47"],
             correct: 2,
-            // Можно использовать URL из интернета
             image: "images/sprays/m4a4.jpg"
         },
         {
@@ -88,7 +80,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["M4A1-S", "MAC-10", "TEC-9", "AUG"],
             correct: 1,
-            // Можно использовать URL из интернета
             image: "images/sprays/mac-10.jpg"
         },
         {
@@ -98,7 +89,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["MP5-SD", "UMP-45", "MP7", "FAMAS"],
             correct: 2,
-            // Можно использовать URL из интернета
             image: "images/sprays/mp7.jpg"
         },
         {
@@ -108,7 +98,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["TEC-9", "M249", "P90", "NEGEV"],
             correct: 2,
-            // Можно использовать URL из интернета
             image: "images/sprays/p90.jpg"
         },
         {
@@ -118,7 +107,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["M4A1-S", "M4A1", "SG553", "AK-47"],
             correct: 2,
-            // Можно использовать URL из интернета
             image: "images/sprays/sg553.jpg"
         },
         {
@@ -128,7 +116,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["TEC-9", "P90", "FAMAS", "AK-47"],
             correct: 0,
-            // Можно использовать URL из интернета
             image: "images/sprays/tec-9.jpg"
         },
         {
@@ -138,7 +125,6 @@ const tasksDB = {
             question: "Опираясь на изображенный паттерн контроля спрея, определите оружие.",
             options: ["MP5-SD", "UMP-45", "M4A1-S", "MP9"],
             correct: 1,
-            // Можно использовать URL из интернета
             image: "images/sprays/ump45.jpg"
         },
         {
@@ -251,7 +237,6 @@ const tasksDB = {
         },
     ],
 
-    // ЗАДАНИЯ С САМОСТОЯТЕЛЬНЫМ ВВОДОМ
     inputTasks: [
         {
             id: 3000,
@@ -740,8 +725,7 @@ const tasksDB = {
             audio: "music-kits/ULTIMATE.mp3"
         }
     ],
-
-    // ЗАДАНИЯ С ВЫБОРОМ НЕСКОЛЬКИХ ПРАВИЛЬНЫХ ОТВЕТОВ (checkbox)
+    
     multiChoiceTasks: [
         {
             id: 8000,
@@ -826,7 +810,6 @@ const tasksDB = {
         },
     ],
 
-    // ЗАДАНИЯ НА СООТВЕТСТВИЕ (matching)
     matchingTasks: [
         {
             id: 2000,
@@ -834,7 +817,6 @@ const tasksDB = {
             type: "matching",
             question:
                 "Установите соответствие между изображениями карт Counter-Strike 2 и их названиями. К каждой позиции первого столбца подберите соответствующую позицию второго столбца и запишите цифры под соответствующими буквами.",
-            // ПЕРВЫЙ СТОЛБЕЦ (буквы А, Б, В, Г) - каждый с картинкой
             leftItems: [
                 { id: "A", image: "images/maps/safehouse.jpg", label: "А" },
                 { id: "B", image: "images/maps/de_mirage.png", label: "Б" },
@@ -866,14 +848,12 @@ const tasksDB = {
             type: "matching",
             question:
                 "Установите соответствие между изображениями карт Counter-Strike 2 и их названиями. К каждой позиции первого столбца подберите соответствующую позицию второго столбца и запишите цифры под соответствующими буквами.",
-            // ПЕРВЫЙ СТОЛБЕЦ (буквы А, Б, В, Г) - каждый с картинкой
             leftItems: [
                 { id: "A", image: "images/maps/ar_pool_day.png", label: "А" },
                 { id: "B", image: "images/maps/Csgo_cobblestone.jpg", label: "Б" },
                 { id: "C", image: "images/maps/awp_india.png", label: "В" },
                 { id: "D", image: "images/maps/de_vertigo.png", label: "Г" }
             ],
-            // ВТОРОЙ СТОЛБЕЦ (названия карт)
             rightItems: [
                 { id: 1, label: "ar_pool_day" },
                 { id: 2, label: "de_vertigo" },
@@ -884,7 +864,6 @@ const tasksDB = {
                 { id: 7, label: "cs_assault" },
                 { id: 8, label: "de_cobblestone" }
             ],
-            // ПРАВИЛЬНЫЕ ОТВЕТЫ: какая буква (А, Б, В, Г) с какой цифрой сопоставляется
             correct: {
                 A: 1,
                 B: 8,
@@ -898,14 +877,12 @@ const tasksDB = {
             type: "matching",
             question:
                 "Установите соответствие между изображениями карт Counter-Strike 2 и их названиями. К каждой позиции первого столбца подберите соответствующую позицию второго столбца и запишите цифры под соответствующими буквами.",
-            // ПЕРВЫЙ СТОЛБЕЦ (буквы А, Б, В, Г) - каждый с картинкой
             leftItems: [
                 { id: "A", image: "images/maps/ar_baggage.png", label: "А" },
                 { id: "B", image: "images/maps/cs_italy.png", label: "Б" },
                 { id: "C", image: "images/maps/de_cache.png", label: "В" },
                 { id: "D", image: "images/maps/de_nuke.png", label: "Г" }
             ],
-            // ВТОРОЙ СТОЛБЕЦ (названия карт)
             rightItems: [
                 { id: 1, label: "cs_office" },
                 { id: 2, label: "ar_baggage" },
@@ -916,7 +893,6 @@ const tasksDB = {
                 { id: 7, label: "de_cache" },
                 { id: 8, label: "de_nuke" }
             ],
-            // ПРАВИЛЬНЫЕ ОТВЕТЫ: какая буква (А, Б, В, Г) с какой цифрой сопоставляется
             correct: {
                 A: 2,
                 B: 6,
@@ -930,14 +906,12 @@ const tasksDB = {
             type: "matching",
             question:
                 "Установите соответствие между изображениями карт Counter-Strike 2 и их названиями. К каждой позиции первого столбца подберите соответствующую позицию второго столбца и запишите цифры под соответствующими буквами.",
-            // ПЕРВЫЙ СТОЛБЕЦ (буквы А, Б, В, Г) - каждый с картинкой
             leftItems: [
                 { id: "A", image: "images/maps/de_basalt.png", label: "А" },
                 { id: "B", image: "images/maps/de_overpass.png", label: "Б" },
                 { id: "C", image: "images/maps/awp_lego_2_ultimate.png", label: "В" },
                 { id: "D", image: "images/maps/de_anubis.png", label: "Г" }
             ],
-            // ВТОРОЙ СТОЛБЕЦ (названия карт)
             rightItems: [
                 { id: 1, label: "awp_india" },
                 { id: 2, label: "de_basalt" },
@@ -948,7 +922,6 @@ const tasksDB = {
                 { id: 7, label: "de_overpass" },
                 { id: 8, label: "de_dust2" }
             ],
-            // ПРАВИЛЬНЫЕ ОТВЕТЫ: какая буква (А, Б, В, Г) с какой цифрой сопоставляется
             correct: {
                 A: 2,
                 B: 7,
