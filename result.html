@@ -154,13 +154,9 @@
 
     <div class="result-title">Результат тестирования</div>
 
-    <div class="task-container" id="scoreDisplay">
-        <!-- Заполняется скриптом -->
-    </div>
+    <div class="task-container" id="scoreDisplay"></div>
 
-    <div class="task-container" id="tableContainer">
-        <!-- Таблица с деталями -->
-    </div>
+    <div class="task-container" id="tableContainer"></div>
 
     
 
@@ -185,7 +181,7 @@
             const report = JSON.parse(reportJSON);
             const { results, total, correct, secondary, timestamp } = report;
 
-            // Баллы
+            
             document.getElementById('scoreDisplay').innerHTML = `
                 <div class="score-block">
                     <div class="score-item primary">
@@ -204,7 +200,7 @@
                 <p style="text-align:center; color:#888; font-size:14px;">Дата: ${timestamp}</p>
             `;
 
-            // Таблица
+            
             let tableHTML = `
                 <h3 style="margin-top:30px;">Детали по каждому заданию</h3>
                 <table>
